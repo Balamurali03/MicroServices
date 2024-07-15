@@ -7,15 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.author_service.Client.BookClient;
+import com.project.author_service.Dto.Book;
 import com.project.author_service.Entity.Author;
 import com.project.author_service.Service.AuthorService;
 
 @RestController
+@RequestMapping("/author")
 public class AuthorController {
 	@Autowired
 	private AuthorService service;
+	
+	@Autowired
+	private BookClient bookClient;
 	
 	@PostMapping("/save")
 	public Author saveAuthor(@RequestBody Author author) {
@@ -30,5 +37,8 @@ public class AuthorController {
 	public List<Author> getAllAuthor(){
 		return service.getAllAuthor();
 	}
-
+	@GetMapping("/check")
+	public void check(@RequestHeader int id) {
+		System.out.println(bookClient.getAllBookByAuthorid(id)); 
+	}
 }
