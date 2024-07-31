@@ -23,5 +23,7 @@ public class Author {
 	private String phno;
 	@Transient
 	private List<Book> books;
+	@Transient
+	private String message;
 
 }

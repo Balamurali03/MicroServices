@@ -21,8 +21,7 @@ public class AuthorController {
 	@Autowired
 	private AuthorService service;
 	
-	@Autowired
-	private BookClient bookClient;
+	
 	
 	@PostMapping("/save")
 	public Author saveAuthor(@RequestBody Author author) {
@@ -38,7 +37,7 @@ public class AuthorController {
 		return service.getAllAuthor();
 	}
 	@GetMapping("/check")
-	public void check(@RequestHeader int id) {
-		System.out.println(bookClient.getAllBookByAuthorid(id)); 
+	public Author check(@RequestHeader int id) {
+		return service.getAuthorAndBookByAuthorId(id);
 	}
 }
